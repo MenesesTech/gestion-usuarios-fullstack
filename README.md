@@ -45,11 +45,11 @@ spring:
   datasource:
     url: jdbc:sqlserver://localhost:1433;trustServerCertificate=true;databaseName=BD_USERS
     username: sa
-    password: tu_password
+    password: {tu_password}
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: validate <- cambialo a update
+      ddl-auto: update
 ```
 3. Ejecute el comando:
 
@@ -69,5 +69,18 @@ npm install
 npm start
 ```
 
-
+## 🧪 Pruebas de la API (Postman)
+Antes de usar el Frontend, puede verificar el funcionamiento del Backend importando los siguientes detalles en Postman:
+Crear Usuario (POST)
+- URL: http://localhost:8080/api/users
+- Body (JSON):
+```bash
+{
+  "username": "menesestech",
+  "email": "menesesfrey@gmail.com",
+  "password": "tu_password_aqui",
+  "estado": true
+}
+```
+![Creación de usuario antes de probar el frontend](img/pruebas-de-postman.png)
 

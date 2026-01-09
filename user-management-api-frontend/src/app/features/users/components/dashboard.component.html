@@ -1,0 +1,105 @@
+<div class="main-container">
+    <aside class="sidebar bg-dark text-white">
+        <div class="logo p-4 border-bottom border-secondary text-center">
+            <h4 class="text-primary fw-bold mb-0">BENCONSULT</h4>
+            <small class="text-muted">Panel Administrativo</small>
+        </div>
+
+        <nav class="list-group list-group-flush p-3 mt-3">
+            <button
+                class="list-group-item list-group-item-action bg-primary text-white border-0 py-3 rounded mb-2 shadow-sm">
+                <i class="bi bi-people-fill me-2"></i> Usuarios
+            </button>
+
+            <div class="mt-auto pt-5">
+                <button (click)="logout()"
+                    class="list-group-item list-group-item-action bg-transparent text-danger border-0 py-3 rounded">
+                    <i class="bi bi-door-open-fill me-2"></i> Cerrar Sesión
+                </button>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="content-area bg-light">
+        <header class="navbar navbar-white bg-white shadow-sm px-4 py-3 mb-4">
+            <span class="fw-medium text-secondary">Bienvenido al Sistema, {{ username }}</span>
+        </header>
+
+        <div class="container-fluid px-4">
+            <div class="card shadow border-0 p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="text-primary fw-bold mb-0">Gestión de Usuarios</h3>
+                    <button class="btn btn-success btn-sm shadow-sm" (click)="createUser()">
+                        <i class="bi bi-person-plus-fill me-1"></i> Agregar Usuario
+                    </button>
+
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Contraseña</th>
+                                <th>Fecha de Registro</th>
+                                <th>Estado</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (user of users; track user.id) {
+                            <tr>
+                                <td><span class="text-muted small">#{{ user.id }}</span></td>
+                                <td>
+                                    <div class="fw-bold">{{ user.username }}</div>
+                                </td>
+                                <td>{{ user.email }}</td>
+                                <td class="text-center" style="width: 100px;">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <span class="text-truncate" style="max-width: 60px;"
+                                            title="{{ user.password }}">
+                                            {{ user.password }}
+                                        </span>
+                                        <button class="btn btn-outline-secondary btn-sm ms-2 p-1"
+                                            (click)="copyPassword(user.password + '')" title="Copiar">
+                                            <i class="bi bi-clipboard"></i>
+                                        </button>
+
+                                    </div>
+                                </td>
+                                <td>{{ user.fechaCreacion | date:'dd/MM/yyyy' }}</td>
+                                <td>
+                                    <span class="badge"
+                                        [ngClass]="user.estado ? 'bg-success-subtle text-success border border-success' : 'bg-danger-subtle text-danger border border-danger'">
+                                        {{ user.estado ? 'Activo' : 'Inactivo' }}
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group shadow-sm">
+                                        <button class="btn btn-outline-primary btn-sm" (click)="viewUser(user)"
+                                            title="Ver">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-outline-warning btn-sm" (click)="editUser(user)"
+                                            data-bs-toggle="modal" data-bs-target="#editModal" title="Editar">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <button class="btn btn-outline-danger btn-sm"
+                                            (click)="deleteUser(user.id!, user.email)"
+                                            [disabled]="currentUserEmail === user.email"
+                                            [title]="currentUserEmail === user.email ? 'No puedes eliminarte a ti mismo' : 'Eliminar'">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

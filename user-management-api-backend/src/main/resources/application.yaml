@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: user-management-api
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;trustServerCertificate=true;databaseName=BD_USERS
+    username: sa
+    password: root
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+
+server:
+  port: 8080

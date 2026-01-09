@@ -24,9 +24,3 @@ CREATE TABLE usuarios (
     fecha_creacion DATETIME DEFAULT GETDATE()
 );
 GO
-
--- Usuario de prueba (Password: admin123)
--- Importante: El hash debe ser generado por BCrypt en tu Backend
-INSERT INTO usuarios (username, email, password, estado, fecha_creacion) 
-VALUES ('admin', 'admin@example.com', '$2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRzgVymGe07xd00DMxs.7uqqCyS', 1, GETDATE());
-GO

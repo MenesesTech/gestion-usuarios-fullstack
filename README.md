@@ -24,7 +24,7 @@ Para permitir que el Backend se conecte a la base de datos local, siga estrictam
 1. **Habilitar Protocolos:**  
    - Ejecute `Win + R`, escriba `SQLServerManager16.msc` (o la versión correspondiente a su SQL Management Studio 20).  
    - En **SQL Server Network Configuration**, asegúrese de que **TCP/IP** esté en **Enabled**.
-
+      ![Configuracion de protocolo](img/sql-server-activate-tcp.png)
 2. **Configurar Puerto:**  
    - En las propiedades de TCP/IP, pestaña **IP Addresses**, verifique que en **IPAll** el puerto sea `1433`.
 
@@ -83,4 +83,17 @@ Crear Usuario (POST)
 }
 ```
 ![Creación de usuario antes de probar el frontend](img/pruebas-de-postman.png)
+
+## 📸 Evidencias de Funcionamiento
+A continuación se presentan las capturas que validan el correcto funcionamiento de los servicios y la interfaz:
+<p align="center">
+  <img src="img/login.png" width="45%" />
+  <img src="img/dashboard.png" width="45%" />
+  <img src="img/crear-usuario.png" width="45%" />
+  <img src="img/detalle-usuario.png" width="45%" />
+  <img src="img/editar-usuario.png" width="45%" /> 
+  <img src="img/eliminar-usuario.png" width="45%" /> 
+  <img src="img/validation-ok.png" width="45%" />
+  <img src="img/imagen_de_registro-sql.png" width="45%" /> 
+</p>
 

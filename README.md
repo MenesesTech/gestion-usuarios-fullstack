@@ -37,13 +37,37 @@ Para permitir que el Backend se conecte a la base de datos local, siga estrictam
 Ejecute el script SQL incluido en la carpeta `/database-sql` utilizando **SQL Server Management Studio 20**.  
 Esto creará la base de datos `BD_USERS`.
 
----
-
 ### 2. Ejecución del Backend
 1. Ingrese a la carpeta `user-management-api-backend/`.  
-2. Verifique las credenciales en `src/main/resources/application.properties`.  
+2. Configure el archivo `src/main/resources/application.yml` con sus credenciales:
+```bash
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;trustServerCertificate=true;databaseName=BD_USERS
+    username: sa
+    password: tu_password
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate <- cambialo a update
+```
 3. Ejecute el comando:
 
 ```bash
 mvn spring-boot:run
+```
+### 3. Ejecución del Frontend
+1. Ingrese a la carpeta `frontend/`.  
+2. Instale las dependencias necesarias:
+
+```bash
+npm install
+```
+
+3. Inicie la aplicación:
+```bash
+npm start
+```
+
+
 
